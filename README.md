@@ -12,7 +12,7 @@ It also allows submitting valid orders, which updates warehouse inventory accord
 
 1.  **Prerequisites:** Ensure you have Docker and Docker Compose installed. Optionally, use pnpm (https://pnpm.io/installation) for dependency management.
 2.  **Dependencies:** Run `pnpm install` (or `npm install`) to install project dependencies.
-3.  **Environment:** Copy the `.env.example` file to `.env` and fill in the required environment variables (database credentials, ports, pgAdmin credentials).
+3.  **Environment:** Copy the `.env.example` file to `.env`.
 
 ### Running the Application
 
@@ -40,8 +40,8 @@ Once running, the following are available:
     - Log in with the `PGADMIN_DEFAULT_EMAIL` and `PGADMIN_DEFAULT_PASSWORD` from your `.env` file.
     - The database server (`Docker DB`) should be pre-configured.
 - **OpenAPI:** 
-    - `http://insightprose.local:3000/api-docs` - OpenAPI json document
-    - `http://insightprose.local:3000/docs/` - Swagger UI
+    - OpenAPI json document: `http://localhost:3000/api-docs`
+    - Swagger UI: `http://localhost:3000/docs/`
 
 ### Testing
 
@@ -139,8 +139,10 @@ For each of the layers of our implementation we require technical solutions to h
 
 Currently this is only a local dev deployment. To extend this to the cloud or server environment we can create a continuous integration pipeline either in Github or AWS as part of CodePipeline.
 
-This CodeBuild or Github Actions pipeline would build the docker containers, push them to a private registry, and then pulled in the pipeline for deployment to a Container Service (AWS ECS) or for instance as a Deployment on Kubernetes.
+This CodeBuild or Github Actions pipeline would build the docker containers, push them to a private registry, and then pulled in the pipeline for deployment to a Container Service (AWS ECS) or for instance as a Deployment on Kubernetes. Environments/secrets can then be managed by AWS Parameter Store/Secrets Manager or for Kubernetes we have Secrets.
 
-For high performant deployments we have the option to vertically, and horizontally scale the Container instances and perform Application Level Load Balancing as the immediate first step.
+For logging/monitoring we should ideally have a centralized solution such as AWS CloudWatch or Loki/Prometheus/Grafana in case of Kubernetes for example. 
+
+For high performant deployments we have the option to vertically, and horizontally scale the Container instances and perform Application Level Load Balancing as the immediate first step. 
 
 Other considations are queues, rate limiting, application level firewalls to further enhance availability, scalability and security.
