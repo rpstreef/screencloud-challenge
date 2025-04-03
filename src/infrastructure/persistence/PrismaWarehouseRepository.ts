@@ -1,7 +1,9 @@
 import { PrismaClient, Warehouse as PrismaWarehouse } from "@prisma/client";
+
 import { IWarehouseRepository, WarehouseStockUpdate } from "@domain/repositories/IWarehouseRepository";
 import { Warehouse } from "@domain/entities/Warehouse";
 import { Coordinates } from "@domain/value-objects/Coordinates";
+
 import prisma from "./prismaClient"; // Import the shared client instance
 import { injectable } from "tsyringe"; // For DI
 
@@ -14,17 +16,6 @@ function toDomain(prismaWarehouse: PrismaWarehouse): Warehouse {
         prismaWarehouse.stock
     );
 }
-
-// Optional mapper if saving/creating warehouses (not strictly needed for this implementation)
-// function fromDomain(warehouse: Warehouse): Prisma.WarehouseCreateInput {
-//     return {
-//         id: warehouse.id,
-//         name: warehouse.name,
-//         latitude: warehouse.location.latitude,
-//         longitude: warehouse.location.longitude,
-//         stock: warehouse.stock
-//     };
-// }
 
 @injectable() // Decorator for dependency injection
 export class PrismaWarehouseRepository implements IWarehouseRepository {
@@ -64,9 +55,6 @@ export class PrismaWarehouseRepository implements IWarehouseRepository {
 
         // Execute all updates within a transaction
         try {
-            // Note: This executes updates sequentially. For true parallel execution
-            // within a transaction, consider interactive transactions if performance is critical
-            // and if your DB supports it well.
             await this.client.$transaction(updatePromises);
         } catch (error: any) {
             // Handle potential errors, e.g., stock going below zero if constraints are set
