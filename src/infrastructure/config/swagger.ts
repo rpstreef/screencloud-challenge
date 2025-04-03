@@ -1,6 +1,6 @@
 import swaggerJsdoc from 'swagger-jsdoc';
 
-// Export the options object so it can be used by restify-swagger-jsdoc
+// Options for swagger-jsdoc
 export const swaggerOptions: swaggerJsdoc.Options = {
   definition: {
     openapi: '3.0.0',
@@ -12,13 +12,12 @@ export const swaggerOptions: swaggerJsdoc.Options = {
     },
     servers: [
       {
-        // Adjust the URL based on your environment variables or actual deployment
         url: `http://localhost:${process.env.APP_PORT || 3000}`,
         description: 'Development server',
       },
     ],
   },
-  // Path to the API docs files based on your project structure
+  // Paths to files containing OpenAPI annotations
   apis: [
     './src/infrastructure/web/routes/healthRoutes.ts',
     './src/infrastructure/web/routes/orderRoutes.ts',
@@ -26,5 +25,5 @@ export const swaggerOptions: swaggerJsdoc.Options = {
   ],
 };
 
-// Export the generated spec for potential other uses (though not directly by createSwaggerPage)
+// Generated Swagger specification object
 export const swaggerSpec = swaggerJsdoc(swaggerOptions); 

@@ -3,7 +3,7 @@ import restify from 'restify'; // Import the main restify package for plugins
 import * as fs from 'fs';
 import * as path from 'path';
 import errors from 'restify-errors';
-import { swaggerSpec } from '@config/swagger'; // Import the pre-generated spec
+import { swaggerSpec } from '@infra/config/swagger'; // Import the pre-generated spec
 import swaggerUi from 'swagger-ui-dist';
 
 export function setupSwaggerRoutes(server: Server): void {

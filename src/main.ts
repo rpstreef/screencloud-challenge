@@ -15,6 +15,8 @@ async function startApp() {
             console.log(`%s listening at %s`, server.name, server.url);
             console.log(`API available at http://localhost:${port}`);
             console.log(`Health check available at http://localhost:${port}/health`);
+            console.log(`Swagger UI available at http://localhost:${port}/docs/`);
+            console.log(`OpenAPI JSON available at http://localhost:${port}/api-docs`);
         });
 
         // Optional: Graceful shutdown handling
