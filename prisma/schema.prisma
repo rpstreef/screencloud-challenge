@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Represents a warehouse storing the SCOS devices
+model Warehouse {
+  id        String  @id @default(uuid()) // Unique identifier for the warehouse
+  name      String  @unique // Name of the warehouse (e.g., "Los Angeles")
+  latitude  Float   // Latitude of the warehouse location
+  longitude Float   // Longitude of the warehouse location
+  stock     Int     // Current stock level of the product
+
+  @@map("warehouses")
+}
+
+// Represents a submitted order
+model Order {
+  orderNumber String   @id // Unique order number provided at submission time
+  productId   String   // Identifier for the product ordered (e.g., "SCOS_P1_PRO")
+  quantity    Int      // Number of units ordered
+  // Shipping address coordinates
+  shippingLatitude  Float
+  shippingLongitude Float
+  // Financial details stored in cents
+  totalPriceCents           Int
+  discountAppliedPercentage Float // Store the percentage value (e.g., 10 for 10%)
+  shippingCostCents         Int
+  // Timestamp
+  submittedAt DateTime @default(now())
+
+  @@map("orders")
+}
