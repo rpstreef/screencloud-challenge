@@ -26,14 +26,18 @@
     "reflect-metadata": "^0.2.2",
     "restify": "^11.1.0",
     "restify-errors": "^8.0.2",
+    "swagger-ui-dist": "^5.20.4",
     "tsyringe": "^4.9.1",
     "zod": "^3.24.2"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
     "@types/supertest": "^6.0.3",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-dist": "^3.30.5",
     "prisma": "^6.5.0",
     "supertest": "^7.1.0",
+    "swagger-jsdoc": "^6.2.8",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.13",
     "typescript": "^5.8.2",

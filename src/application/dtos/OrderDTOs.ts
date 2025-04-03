@@ -1,5 +1,46 @@
 import { z } from 'zod';
 
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     Coordinates:
+ *       type: object
+ *       required: [latitude, longitude]
+ *       properties:
+ *         latitude: { type: number, format: float, minimum: -90, maximum: 90 }
+ *         longitude: { type: number, format: float, minimum: -180, maximum: 180 }
+ *     OrderInput:
+ *       type: object
+ *       required: [quantity, shippingAddress]
+ *       properties:
+ *         quantity: { type: integer, minimum: 1 }
+ *         shippingAddress: { $ref: '#/components/schemas/Coordinates' }
+ *     VerifyOrderOutput:
+ *       type: object
+ *       properties:
+ *         totalPrice: { type: number, format: float }
+ *         discountPercentage: { type: number, format: float }
+ *         shippingCost: { type: number, format: float }
+ *         isValid: { type: boolean }
+ *     SubmitOrderOutput:
+ *       type: object
+ *       properties:
+ *         orderNumber: { type: string }
+ *         totalPrice: { type: number, format: float }
+ *         discountPercentage: { type: number, format: float }
+ *         shippingCost: { type: number, format: float }
+ *         submittedAt: { type: string, format: date-time }
+ *     ProblemDetails:
+ *       type: object
+ *       properties:
+ *         title: { type: string }
+ *         status: { type: integer }
+ *         detail: { type: string }
+ *         code: { type: string }
+ *         instance: { type: string, format: uri-reference }
+ */
+
 // Input DTO for both Verify and Submit operations
 export interface OrderInputDTO {
     quantity: number;

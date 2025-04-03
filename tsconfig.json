@@ -15,7 +15,8 @@
             ],
             "@app/*": ["src/application/*"],
             "@infra/*": ["src/infrastructure/*"],
-            "@domain/*": ["src/domain/*"]
+            "@domain/*": ["src/domain/*"],
+            "@config/*": ["src/config/*"]
         }
     },
     "include": ["src/**/*.ts"],

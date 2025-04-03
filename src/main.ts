@@ -1,21 +1,13 @@
 // main.ts
 import 'reflect-metadata';
 
-import container from './container'; // Import the configured DI container
 import { createServer } from '@infra/web/server';
-import { OrderController } from '@infra/web/controllers/OrderController';
 
 async function startApp() {
     try {
-        // --- Dependency Injection --- 
-        // Container should already be configured by importing ./container
-        const orderController = container.resolve(OrderController);
-
         // --- Server Setup --- 
+        // Creates server and sets up middleware, error handling, and ALL routes
         const server = createServer();
-
-        // --- Route Registration --- 
-        orderController.registerRoutes(server);
 
         // --- Start Server --- 
         const port = process.env.PORT || 3000; // Use port from .env or default
