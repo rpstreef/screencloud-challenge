@@ -29,11 +29,6 @@ afterAll(async () => {
     console.log('E2E Test Run Finished.');
 });
 
-// Optional: Reset DB between tests if needed
-// beforeEach(async () => {
-//     runSeed(); 
-// });
-
 // --- Test Suite (remains the same) ---
 describe('Orders API (E2E)', () => {
 
