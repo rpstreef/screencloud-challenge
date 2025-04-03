@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "CommonJS",
+        "strict": true,
+        "skipLibCheck": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "outDir": "./dist",
+        "baseUrl": ".",
+        "paths": {
+            "@prisma/client": [
+                "./node_modules/.pnpm/@prisma+client@6.5.0_prisma@6.5.0_typescript@5.8.2__typescript@5.8.2/node_modules/@prisma/client"
+            ],
+            "@app/*": ["src/application/*"],
+            "@infra/*": ["src/infrastructure/*"],
+            "@domain/*": ["src/domain/*"]
+        }
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules", "dist"]
+}

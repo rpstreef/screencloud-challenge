@@ -1,0 +1,46 @@
+{
+  "name": "screencloud-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:domain": "vitest run test/domain",
+    "test:application": "vitest run test/application",
+    "test:infrastructure": "docker compose exec app npx vitest run test/infrastructure",
+    "start": "docker compose up -d --build",
+    "stop": "docker compose down",
+    "db:reset": "docker compose exec app npx prisma db push --force-reset --accept-data-loss",
+    "db:seed": "docker compose exec app npx prisma db seed",
+    "db:prepare": "npm run db:reset && npm run db:seed",
+    "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.6.5",
+  "dependencies": {
+    "@prisma/client": "6.5.0",
+    "@types/restify": "^8.5.12",
+    "@types/restify-errors": "^4.3.9",
+    "reflect-metadata": "^0.2.2",
+    "restify": "^11.1.0",
+    "restify-errors": "^8.0.2",
+    "tsyringe": "^4.9.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/supertest": "^6.0.3",
+    "prisma": "^6.5.0",
+    "supertest": "^7.1.0",
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.13",
+    "typescript": "^5.8.2",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.1.1"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  }
+}
